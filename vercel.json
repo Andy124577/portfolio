@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/modern_portfolio.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/modern_portfolio.html"
+    }
+  ]
+}
