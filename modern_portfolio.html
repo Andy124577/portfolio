@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andy Zubka - Portfolio</title>
+  <link rel="stylesheet" href="modern_portfolio.css">
+  <style>
+    #nhl-balls-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      display: none; /* Hidden by default */
+    }
+    
+    #nhl-balls-canvas.active {
+      display: block;
+    }
+    
+    body {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="nhl-balls-canvas"></canvas>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Andy Zubka</div>
+    <ul class="nav-links">
+      <li><a href="#home" onclick="showHome()">Travaux</a></li>
+      <li><a href="#about">À Propos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Page -->
+  <div id="home-page">
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Designer Créatif<br>& Développeur</h1>
+      <p>Création d'expériences numériques à travers le design web, la visualisation 3D et les médias interactifs au Québec, Canada.</p>
+      <a href="#work" class="cta-button">Voir Mon Travail</a>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="work" class="projects-section">
+      <h2 class="section-title">Projets Sélectionnés</h2>
+      <div class="projects-grid">
+        <!-- Huskies Project -->
+        <a href="#" class="project-card" onclick="showProject('huskies'); return false;">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(237,28,46,0.3), rgba(237,28,46,0.1));">
+            <div class="project-number">01</div>
+            <img src="/Images/huskies/Huskies.jpg" alt="Huskies Ice Projection">
+          </div>
+          <div class="project-info">
+            <h3>Projection sur Glace Huskies</h3>
+            <p>Projection mapping interactive pour les séries éliminatoires des Huskies de Rouyn-Noranda 2024-25.</p>
+            <div class="project-tags">
+              <span class="tag">After Effects</span>
+              <span class="tag">Resolume Arena</span>
+              <span class="tag">Projection Mapping</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- CTRI Website -->
+        <a href="#" class="project-card" onclick="showProject('ctri'); return false;">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(55,71,79,0.3), rgba(33,150,243,0.2));">
+            <div class="project-number">02</div>
+            <img src="/Images/ctri/ctribatiment.jpg" alt="CTRI Website">
+          </div>
+          <div class="project-info">
+            <h3>Site Web CTRI</h3>
+            <p>Création d'un site web moderne pour le Centre de Traitement et de Recherche en Innovation.</p>
+            <div class="project-tags">
+              <span class="tag">Web Design</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">Development</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- NHL Pool -->
+        <a href="#" class="project-card" onclick="showProject('nhlpool'); return false;">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(200,16,46,0.3));">
+            <div class="project-number">03</div>
+            <img src="/Images/nhlPool/wp3186438-nhl-wallpaper-hd.jpg" alt="NHL Pool">
+          </div>
+          <div class="project-info">
+            <h3>Pool de Hockey NHL</h3>
+            <p>Application web interactive pour gérer un pool de hockey de la LNH avec classements en temps réel.</p>
+            <div class="project-tags">
+              <span class="tag">Web App</span>
+              <span class="tag">API Integration</span>
+              <span class="tag">Real-time Data</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Pamphlet Design -->
+        <a href="#" class="project-card" onclick="showProject('pamphlet'); return false;">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(255,87,34,0.3), rgba(156,39,176,0.2), rgba(33,150,243,0.2), rgba(76,175,80,0.2));">
+            <div class="project-number">04</div>
+            <img src="/Images/pamphlet/couverture.png" alt="Pamphlet Design">
+          </div>
+          <div class="project-info">
+            <h3>Design de Pamphlet</h3>
+            <p>Création de matériel promotionnel impactant avec une approche graphique colorée et moderne.</p>
+            <div class="project-tags">
+              <span class="tag">Graphic Design</span>
+              <span class="tag">Print Design</span>
+              <span class="tag">Branding</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Small Projects -->
+        <a href="#" class="project-card" onclick="showProject('smallprojects'); return false;">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(66,66,66,0.5), rgba(33,33,33,0.7));">
+            <div class="project-number">05</div>
+            <img src="/Images/personel.png" alt="Small Projects">
+          </div>
+          <div class="project-info">
+            <h3>Petits Projets</h3>
+            <p>Collection de projets variés démontrant ma polyvalence en design, développement et créativité.</p>
+            <div class="project-tags">
+              <span class="tag">Divers</span>
+              <span class="tag">Expérimentation</span>
+              <span class="tag">Créativité</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="projects-section">
+      <h2 class="section-title">À Propos</h2>
+      <div style="max-width: 900px;">
+        <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray); margin-bottom: 2rem;">
+          Salut! Je suis Andy Zubka, un designer créatif et développeur basé au Québec, Canada. Je me spécialise dans la création d'expériences numériques innovantes qui combinent design web, visualisation 3D et médias interactifs.
+        </p>
+        <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray); margin-bottom: 2rem;">
+          Avec une passion pour la technologie et le design, je travaille sur des projets variés allant de la projection mapping pour des événements sportifs au développement d'applications web interactives. Mon approche combine créativité technique et attention aux détails pour créer des solutions qui captivent et engagent.
+        </p>
+        <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray);">
+          Quand je ne code pas ou ne dessine pas, vous me trouverez probablement en train d'explorer de nouvelles technologies, de regarder du hockey, ou de travailler sur mes propres projets créatifs.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="projects-section" style="min-height: 60vh;">
+      <h2 class="section-title">Contact</h2>
+      <div style="max-width: 700px;">
+        <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray); margin-bottom: 3rem;">
+          Vous avez un projet en tête? N'hésitez pas à me contacter. Je suis toujours ouvert à discuter de nouvelles opportunités et collaborations.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div>
+            <h4 style="color: var(--gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Email</h4>
+            <a href="mailto:andyzubka@outlook.com" style="color: var(--text-color); text-decoration: none; font-size: 1.5rem; transition: color 0.3s;">andyzubka@outlook.com</a>
+          </div>
+          <div>
+            <h4 style="color: var(--gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Téléphone</h4>
+            <a href="tel:+18735617516" style="color: var(--text-color); text-decoration: none; font-size: 1.5rem; transition: color 0.3s;">+1 873 561 7516</a>
+          </div>
+          <div>
+            <h4 style="color: var(--gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Réseaux Sociaux</h4>
+            <div style="display: flex; gap: 2rem;">
+              <a href="#" style="color: var(--text-color); text-decoration: none; font-size: 1.2rem; transition: color 0.3s;">LinkedIn</a>
+              <a href="#" style="color: var(--text-color); text-decoration: none; font-size: 1.2rem; transition: color 0.3s;">Instagram</a>
+              <a href="#" style="color: var(--text-color); text-decoration: none; font-size: 1.2rem; transition: color 0.3s;">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h3>Travaillons ensemble</h3>
+          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
+        </div>
+        <div class="contact-info">
+          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
+          <a href="tel:+18735617516">+1 873 561 7516</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Project Detail: Huskies -->
+  <div id="project-huskies" class="project-detail">
+    <div class="back-button">
+      <a href="#" onclick="showHome(); return false;">← Retour aux projets</a>
+    </div>
+
+    <div class="project-hero">
+      <img src="/Images/huskies/Glace.jpg" alt="Huskies Ice Projection">
+    </div>
+
+    <div class="project-content">
+      <div class="project-header">
+        <div>
+          <h1>Projection sur Glace Huskies</h1>
+        </div>
+        <div class="project-meta">
+          <div class="meta-item">
+            <h4>Rôle</h4>
+            <p>Designer de Mouvement & Directeur Technique</p>
+          </div>
+          <div class="meta-item">
+            <h4>Année</h4>
+            <p>2024-2025</p>
+          </div>
+          <div class="meta-item">
+            <h4>Outils</h4>
+            <p>After Effects, Resolume Arena</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-description">
+        <p>Après une grande saison des Huskies de Rouyn-Noranda en 2024-25, les Huskies se sont dirigés vers les séries éliminatoires très confiants et avec un but précis.</p>
+        <p>Dans un cours d'interactivité à l'UQAT, nous avons eu comme projet de faire des animations en utilisant After Effects et ensuite Resolume Arena pour projeter nos animations sur la glace.</p>
+        <p>Le projet a nécessité une attention particulière aux dimensions de la surface de glace, aux conditions d'éclairage et à la synchronisation avec les événements du match.</p>
+      </div>
+
+      <div class="project-gallery">
+        <div class="gallery-item full">
+          <img src="/Images/huskies/projection1.png" alt="Ice projection overview">
+        </div>
+
+        <div class="gallery-item full">
+          <video controls style="width: 100%; height: auto; border-radius: 12px;">
+            <source src="/videos/huskies.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+          </video>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="/Images/huskies/projection2.png" alt="Design process">
+          </div>
+          <div class="gallery-item">
+            <img src="/Images/huskies/projection3.png" alt="Motion graphics">
+          </div>
+        </div>
+
+        <div class="gallery-item full">
+          <img src="/Images/huskies/projection4.png" alt="Arena atmosphere">
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h3>Travaillons ensemble</h3>
+          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
+        </div>
+        <div class="contact-info">
+          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
+          <a href="tel:+18735617516">+1 873 561 7516</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Project Detail: CTRI -->
+  <div id="project-ctri" class="project-detail">
+    <div class="back-button">
+      <a href="#" onclick="showHome(); return false;">← Retour aux projets</a>
+    </div>
+
+    <div class="project-hero">
+      <img src="/Images/ctri/ctribatiment.jpg" alt="CTRI Website">
+    </div>
+
+    <div class="project-content">
+      <div class="project-header">
+        <div>
+          <h1>Site Web CTRI</h1>
+        </div>
+        <div class="project-meta">
+          <div class="meta-item">
+            <h4>Rôle</h4>
+            <p>Designer Web & Développeur front-end</p>
+          </div>
+          <div class="meta-item">
+            <h4>Année</h4>
+            <p>2024</p>
+          </div>
+          <div class="meta-item">
+            <h4>Outils</h4>
+            <p>React, tailwind, JavaScript, SQL</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-description">
+        <p>Création d'un site web moderne pour le Centre de Traitement et de Recherche en Innovation, permettant de faire la gestion de leur inventaire et des entretiens de pièces.</p>
+        <p>Développement d'une présence web professionnelle pour le CTRI avec une navigation intuitive et simple à utiliser.</p>
+      </div>
+
+      <div class="project-gallery">
+        <div class="gallery-item full">
+          <img src="/Images/ctri/7MarsWeb.PNG" alt="CTRI overview">
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="/Images/ctri/5MarsApp.PNG" alt="CTRI design">
+          </div>
+          <div class="gallery-item">
+            <img src="/Images/ctri/14MarsWeb.PNG" alt="CTRI tech">
+          </div>
+        </div>
+
+        <div class="gallery-item full">
+          <img src="/Images/ctri/1MarsWeb.PNG" alt="CTRI final">
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h3>Travaillons ensemble</h3>
+          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
+        </div>
+        <div class="contact-info">
+          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
+          <a href="tel:+18735617516">+1 873 561 7516</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Project Detail: NHL Pool -->
+  <div id="project-nhlpool" class="project-detail">
+    <div class="back-button">
+      <a href="#" onclick="showHome(); return false;">← Retour aux projets</a>
+    </div>
+
+    <div class="project-hero">
+      <img src="/Images/nhlPool/wp3186438-nhl-wallpaper-hd.jpg" alt="NHL Pool">
+    </div>
+
+    <div class="project-content">
+      <div class="project-header">
+        <div>
+          <h1>Pool de Hockey NHL</h1>
+        </div>
+        <div class="project-meta">
+          <div class="meta-item">
+            <h4>Rôle</h4>
+            <p>Développeur Full Stack</p>
+          </div>
+          <div class="meta-item">
+            <h4>Année</h4>
+            <p>2024</p>
+          </div>
+          <div class="meta-item">
+            <h4>Outils</h4>
+            <p>HTML, CSS, JavaScript, Python</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-description">
+        <p>Application web interactive pour gérer un pool de hockey de la LNH avec classements en temps réel et statistiques détaillées.</p>
+        <p>Plateforme complète pour organiser et suivre un pool de hockey avec amis et collègues.</p>
+        <p>Intégration d'API pour récupérer les données actualisées des matchs et joueurs NHL avec un système de points personnalisé.</p>
+      </div>
+
+      <div class="project-gallery">
+        <div class="gallery-item full">
+          <img src="/Images/nhlPool/stats.png" alt="NHL Pool overview">
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="/Images/nhlPool/teams.png" alt="NHL dashboard">
+          </div>
+          <div class="gallery-item">
+            <img src="/Images/nhl-stats.jpg" alt="NHL stats">
+          </div>
+        </div>
+
+        <div class="gallery-item full">
+          <img src="/Images/nhl-final.jpg" alt="NHL final">
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h3>Travaillons ensemble</h3>
+          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
+        </div>
+        <div class="contact-info">
+          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
+          <a href="tel:+18735617516">+1 873 561 7516</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Project Detail: Pamphlet -->
+  <div id="project-pamphlet" class="project-detail">
+    <div class="back-button">
+      <a href="#" onclick="showHome(); return false;">← Retour aux projets</a>
+    </div>
+
+    <div class="project-hero">
+      <img src="/Images/pamphlet/couverture.png" alt="Pamphlet Design">
+    </div>
+
+    <div class="project-content">
+      <div class="project-header">
+        <div>
+          <h1>Design de Pamphlet</h1>
+        </div>
+        <div class="project-meta">
+          <div class="meta-item">
+            <h4>Rôle</h4>
+            <p>Designer Graphique</p>
+          </div>
+          <div class="meta-item">
+            <h4>Année</h4>
+            <p>2024</p>
+          </div>
+          <div class="meta-item">
+            <h4>Outils</h4>
+            <p>Illustrator, Photoshop</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-description">
+        <p>Création d'un pamphlet personnel démontrant ma passion pour ce sport et de ces records incroyable qui faut connaître</p>
+        <p>Palette de couleurs vibrantes et typographie audacieuse pour maximiser l'impact visuel.</p>
+        <p>Illustrations et icônes personnalisées pour renforcer le message et l'identité visuelle</p>
+      </div>
+
+      <div class="project-gallery">
+        <div class="gallery-item full">
+          <img src="/Images/pamphlet/couverture.png" alt="Pamphlet overview">
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="/Images/pamphlet/page5.png" alt="Pamphlet front">
+          </div>
+          <div class="gallery-item">
+            <img src="/Images/pamphlet/page6.png" alt="Pamphlet layout">
+          </div>
+        </div>
+
+        <div class="gallery-item full">
+          <img src="/Images/pamphlet/page9.png" alt="Pamphlet final">
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h3>Travaillons ensemble</h3>
+          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
+        </div>
+        <div class="contact-info">
+          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
+          <a href="tel:+18735617516">+1 873 561 7516</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Project Detail: Small Projects -->
+  <div id="project-smallprojects" class="project-detail">
+    <div class="back-button">
+      <a href="#" onclick="showHome(); return false;">← Retour aux projets</a>
+    </div>
+
+    <div class="project-hero">
+      <img src="/Images/small-projects-hero.jpg" alt="Small Projects">
+    </div>
+
+    <div class="project-content">
+      <div class="project-header">
+        <div>
+          <h1>Collection de Petits Projets</h1>
+        </div>
+        <div class="project-meta">
+          <div class="meta-item">
+            <h4>Rôle</h4>
+            <p>Designer & Développeur</p>
+          </div>
+          <div class="meta-item">
+            <h4>Année</h4>
+            <p>2023-2024</p>
+          </div>
+          <div class="meta-item">
+            <h4>Outils</h4>
+            <p>Divers</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-description">
+        <p>Une sélection de projets variés démontrant ma polyvalence en design, développement et créativité à travers différents médiums.</p>
+        <p>Cette collection regroupe des expérimentations, prototypes et projets personnels réalisés au fil du temps.</p>
+        <p>Chaque projet représente une opportunité d'explorer de nouvelles techniques et technologies.</p>
+      </div>
+
+      <div class="project-gallery">
+        <div class="gallery-item full">
+          <img src="/Images/small-projects-hero.jpg" alt="Small projects overview">
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="/Images/small-project-1.jpg" alt="Project 1">
+          </div>
+          <div class="gallery-item">
+            <img src="/Images/small-project-2.jpg" alt="Project 2">
+          </div>
+        </div>
+
+        <div class="gallery-item full">
+          <img src="/Images/small-project-3.jpg" alt="Project 3">
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <h3>Travaillons ensemble</h3>
+          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
+        </div>
+        <div class="contact-info">
+          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
+          <a href="tel:+18735617516">+1 873 561 7516</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function showHome() {
+      document.getElementById('home-page').style.display = 'block';
+      document.querySelectorAll('.project-detail').forEach(el => {
+        el.classList.remove('active');
+      });
+      canvas.classList.remove('active'); // Hide balls
+      window.scrollTo(0, 0);
+    }
+
+    function showProject(projectId) {
+      document.getElementById('home-page').style.display = 'none';
+      document.querySelectorAll('.project-detail').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.getElementById('project-' + projectId).classList.add('active');
+      
+      // Show balls only on NHL Pool project
+      if (projectId === 'nhlpool') {
+        canvas.classList.add('active');
+        // Reset canvas size and ball positions for new page
+        setTimeout(() => {
+          resizeCanvas();
+          // Reset ball positions
+          balls.forEach((ball, i) => {
+            ball.x = Math.random() * (canvas.width - 100) + 50;
+            ball.y = -50 - (i * 30);
+            ball.vx = (Math.random() - 0.5) * 2;
+            ball.vy = 0;
+          });
+        }, 300);
+      } else {
+        canvas.classList.remove('active');
+      }
+      
+      window.scrollTo(0, 0);
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href') !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+  </script>
+
+  <script>
+    // NHL Balls Physics Animation
+    const canvas = document.getElementById('nhl-balls-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set canvas to full document height
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      // Use a timeout to ensure DOM is fully rendered
+      setTimeout(() => {
+        const activeProject = document.querySelector('.project-detail.active');
+        if (activeProject) {
+          canvas.height = activeProject.scrollHeight;
+        } else {
+          canvas.height = document.body.scrollHeight;
+        }
+      }, 200);
+    }
+    resizeCanvas();
+
+    // NHL Team colors and logos (32 teams)
+    const nhlTeams = [
+      { name: 'ANA', colors: ['#F47A38', '#B9975B'], logo: '/images/nhl-logos/ANA.png' },
+      { name: 'BOS', colors: ['#FFB81C', '#000000'], logo: '/images/nhl-logos/BOS.png' },
+      { name: 'BUF', colors: ['#002654', '#FCB514'], logo: '/images/nhl-logos/BUF.png' },
+      { name: 'CGY', colors: ['#C8102E', '#F1BE48'], logo: '/images/nhl-logos/CGY.png' },
+      { name: 'CAR', colors: ['#CC0000', '#000000'], logo: '/images/nhl-logos/CAR.png' },
+      { name: 'CHI', colors: ['#CF0A2C', '#000000'], logo: '/images/nhl-logos/chi.png' },
+      { name: 'COL', colors: ['#6F263D', '#236192'], logo: '/images/nhl-logos/col.png' },
+      { name: 'CBJ', colors: ['#002654', '#CE1126'], logo: '/images/nhl-logos/cbj.png' },
+      { name: 'DAL', colors: ['#006847', '#8F8F8C'], logo: '/images/nhl-logos/dal.png' },
+      { name: 'DET', colors: ['#CE1126', '#FFFFFF'], logo: '/images/nhl-logos/det.png' },
+      { name: 'EDM', colors: ['#041E42', '#FF4C00'], logo: '/images/nhl-logos/edm.png' },
+      { name: 'FLA', colors: ['#041E42', '#C8102E'], logo: '/images/nhl-logos/fla.png' },
+      { name: 'LA', colors: ['#111111', '#A2AAAD'], logo: '/images/nhl-logos/lak.png' },
+      { name: 'MIN', colors: ['#154734', '#A6192E'], logo: '/images/nhl-logos/min.png' },
+      { name: 'MTL', colors: ['#AF1E2D', '#192168'], logo: '/images/nhl-logos/mtl.png' },
+      { name: 'NSH', colors: ['#FFB81C', '#041E42'], logo: '/images/nhl-logos/nsh.png' },
+      { name: 'NJ', colors: ['#CE1126', '#000000'], logo: '/images/nhl-logos/njd.png' },
+      { name: 'NYI', colors: ['#00539B', '#F47D30'], logo: '/images/nhl-logos/nyi.png' },
+      { name: 'NYR', colors: ['#0038A8', '#CE1126'], logo: '/images/nhl-logos/nyr.png' },
+      { name: 'OTT', colors: ['#C52032', '#000000'], logo: '/images/nhl-logos/ott.png' },
+      { name: 'PHI', colors: ['#F74902', '#000000'], logo: '/images/nhl-logos/phi.png' },
+      { name: 'PIT', colors: ['#000000', '#CFC493'], logo: '/images/nhl-logos/pit.png' },
+      { name: 'SJ', colors: ['#006D75', '#EA7200'], logo: '/images/nhl-logos/sjs.png' },
+      { name: 'SEA', colors: ['#001628', '#99D9D9'], logo: '/images/nhl-logos/sea.png' },
+      { name: 'STL', colors: ['#002F87', '#FCB514'], logo: '/images/nhl-logos/stl.png' },
+      { name: 'TB', colors: ['#002868', '#FFFFFF'], logo: '/images/nhl-logos/tbl.png' },
+      { name: 'TOR', colors: ['#00205B', '#FFFFFF'], logo: '/images/nhl-logos/tor.png' },
+      { name: 'VAN', colors: ['#00205B', '#00843D'], logo: '/images/nhl-logos/van.png' },
+      { name: 'VGK', colors: ['#B4975A', '#333F42'], logo: '/images/nhl-logos/vgk.png' },
+      { name: 'WSH', colors: ['#041E42', '#C8102E'], logo: '/images/nhl-logos/wsh.png' },
+      { name: 'WPG', colors: ['#041E42', '#004C97'], logo: '/images/nhl-logos/wpg.png' },
+      { name: 'UTA', colors: ['#69B3E7', '#000000'], logo: '/images/nhl-logos/uta.png' }
+    ];
+
+    class Ball {
+      constructor(x, y, team) {
+        this.x = x;
+        this.y = y;
+        this.radius = 25;
+        this.vx = (Math.random() - 0.5) * 2;
+        this.vy = 0;
+        this.team = team;
+        this.gravity = 0.5;
+        this.bounce = 0.7;
+        this.friction = 0.99;
+        
+        // Load team logo image
+        this.logoImg = new Image();
+        this.logoImg.src = team.logo;
+        this.logoLoaded = false;
+        this.logoImg.onload = () => {
+          this.logoLoaded = true;
+        };
+      }
+
+      draw() {
+        // Draw ball with team colors
+        const gradient = ctx.createRadialGradient(
+          this.x - this.radius/3, 
+          this.y - this.radius/3, 
+          0, 
+          this.x, 
+          this.y, 
+          this.radius
+        );
+        gradient.addColorStop(0, this.team.colors[0]);
+        gradient.addColorStop(1, this.team.colors[1]);
+        
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        // Draw logo if loaded
+        if (this.logoLoaded) {
+          const logoSize = this.radius * 1.5;
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius - 2, 0, Math.PI * 2);
+          ctx.clip();
+          ctx.drawImage(
+            this.logoImg,
+            this.x - logoSize / 2,
+            this.y - logoSize / 2,
+            logoSize,
+            logoSize
+          );
+          ctx.restore();
+        } else {
+          // Fallback to team name if logo not loaded
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = 'bold 10px Arial';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(this.team.name, this.x, this.y);
+        }
+        
+        // Border
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      update(balls) {
+        // Gravity
+        this.vy += this.gravity;
+        
+        // Apply velocity
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        // Apply friction
+        this.vx *= this.friction;
+        
+        // Simple floor at canvas bottom
+        const maxY = canvas.height;
+        
+        // Floor collision
+        if (this.y + this.radius > maxY) {
+          this.y = maxY - this.radius;
+          this.vy *= -this.bounce;
+          this.vx *= 0.95;
+        }
+        
+        // Ceiling collision
+        if (this.y - this.radius < 0) {
+          this.y = this.radius;
+          this.vy *= -this.bounce;
+        }
+        
+        // Wall collisions
+        if (this.x + this.radius > canvas.width) {
+          this.x = canvas.width - this.radius;
+          this.vx *= -this.bounce;
+        }
+        if (this.x - this.radius < 0) {
+          this.x = this.radius;
+          this.vx *= -this.bounce;
+        }
+        
+        // Ball-to-ball collision
+        balls.forEach(ball => {
+          if (ball !== this) {
+            const dx = ball.x - this.x;
+            const dy = ball.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const minDist = this.radius + ball.radius;
+            
+            if (distance < minDist) {
+              const angle = Math.atan2(dy, dx);
+              const targetX = this.x + Math.cos(angle) * minDist;
+              const targetY = this.y + Math.sin(angle) * minDist;
+              const ax = (targetX - ball.x) * 0.05;
+              const ay = (targetY - ball.y) * 0.05;
+              
+              this.vx -= ax;
+              this.vy -= ay;
+              ball.vx += ax;
+              ball.vy += ay;
+            }
+          }
+        });
+      }
+      
+      checkMouseCollision(mouseX, mouseY) {
+        if (mouseX !== null && mouseY !== null) {
+          const dx = mouseX - this.x;
+          const dy = mouseY - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const mouseRadius = 40;
+          
+          if (distance < this.radius + mouseRadius) {
+            const angle = Math.atan2(dy, dx);
+            const force = (this.radius + mouseRadius - distance) * 0.8;
+            this.vx -= Math.cos(angle) * force;
+            this.vy -= Math.sin(angle) * force;
+          }
+        }
+        
+        // Ball-to-ball collision
+        balls.forEach(ball => {
+          if (ball !== this) {
+            const dx = ball.x - this.x;
+            const dy = ball.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const minDist = this.radius + ball.radius;
+            
+            if (distance < minDist) {
+              const angle = Math.atan2(dy, dx);
+              const targetX = this.x + Math.cos(angle) * minDist;
+              const targetY = this.y + Math.sin(angle) * minDist;
+              const ax = (targetX - ball.x) * 0.05;
+              const ay = (targetY - ball.y) * 0.05;
+              
+              this.vx -= ax;
+              this.vy -= ay;
+              ball.vx += ax;
+              ball.vy += ay;
+            }
+          }
+        });
+      }
+    }
+
+    // Create balls
+    const balls = [];
+    nhlTeams.forEach((team, i) => {
+      const x = Math.random() * (canvas.width - 100) + 50;
+      const y = -50 - (i * 30); // Stagger drop
+      balls.push(new Ball(x, y, team));
+    });
+
+    // Mouse position
+    let mouseX = null;
+    let mouseY = null;
+    let scrollOffset = 0;
+    
+    // Track mouse on canvas
+    document.addEventListener('mousemove', (e) => {
+      if (canvas.classList.contains('active')) {
+        mouseX = e.clientX;
+        mouseY = e.clientY + window.scrollY;
+      }
+    });
+    
+    document.addEventListener('mouseleave', () => {
+      mouseX = null;
+      mouseY = null;
+    });
+
+    // Scroll physics
+    window.addEventListener('scroll', () => {
+      const newScroll = window.scrollY;
+      const scrollDelta = newScroll - scrollOffset;
+      scrollOffset = newScroll;
+      
+      // Apply scroll force to balls (reduced upward force)
+      balls.forEach(ball => {
+        if (scrollDelta > 0) {
+          // Scrolling down - normal force
+          ball.vy += scrollDelta * 0.1;
+        } else {
+          // Scrolling up - reduced force with horizontal spread
+          ball.vy += scrollDelta * 0.05;
+          // Add random horizontal velocity when scrolling up
+          ball.vx += (Math.random() - 0.5) * Math.abs(scrollDelta) * 0.08;
+        }
+      });
+    });
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+    });
+
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      balls.forEach(ball => {
+        ball.update(balls);
+        ball.checkMouseCollision(mouseX, mouseY);
+        ball.draw();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
