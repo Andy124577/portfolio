@@ -24,9 +24,72 @@
     body {
       position: relative;
     }
+    
+    /* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .lightbox.active {
+      display: flex;
+    }
+    
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .gallery-item img {
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    
+    .gallery-item img:hover {
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Full size image">
+  </div>
+  
   <canvas id="nhl-balls-canvas"></canvas>
   <!-- Navigation -->
   <nav>
@@ -110,7 +173,7 @@
           </div>
           <div class="project-info">
             <h3>Design de Pamphlet</h3>
-            <p>Création de matériel personnel impactant avec une approche graphique colorée et moderne.</p>
+            <p>Création de matériel promotionnel impactant avec une approche graphique colorée et moderne.</p>
             <div class="project-tags">
               <span class="tag">Graphic Design</span>
               <span class="tag">Print Design</span>
@@ -247,6 +310,7 @@
         <div class="gallery-item full">
           <video controls style="width: 100%; height: auto; border-radius: 12px;">
             <source src="/videos/huskies.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
           </video>
         </div>
 
@@ -518,7 +582,7 @@
     </div>
 
     <div class="project-hero">
-      <img src="/Images/small-projects-hero.jpg" alt="Small Projects">
+      <img src="/Images/personel.png" alt="Small Projects">
     </div>
 
     <div class="project-content">
@@ -550,20 +614,20 @@
 
       <div class="project-gallery">
         <div class="gallery-item full">
-          <img src="/Images/small-projects-hero.jpg" alt="Small projects overview">
+          <img src="/Images/small/ZubkaAndy_quoteDevoir.jpg" alt="Small projects overview">
         </div>
 
         <div class="gallery-grid">
           <div class="gallery-item">
-            <img src="/Images/small-project-1.jpg" alt="Project 1">
+            <img src="/Images/small/cameriseMajomik.png" alt="Project 1">
           </div>
           <div class="gallery-item">
-            <img src="/Images/small-project-2.jpg" alt="Project 2">
+            <img src="/Images/small/maserati.png" alt="Project 2">
           </div>
         </div>
 
         <div class="gallery-item full">
-          <img src="/Images/small-project-3.jpg" alt="Project 3">
+          <img src="/Images/small/troc.png" alt="Project 3">
         </div>
       </div>
     </div>
@@ -588,6 +652,34 @@
   </div>
 
   <script>
+    // Lightbox functionality
+    function openLightbox(imgSrc) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imgSrc;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = ''; // Re-enable scrolling
+    }
+    
+    // Add click handlers to all gallery images
+    function initLightbox() {
+      document.querySelectorAll('.gallery-item img, .project-hero img').forEach(img => {
+        img.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openLightbox(this.src);
+        });
+      });
+    }
+    
+    // Initialize lightbox on page load
+    window.addEventListener('load', initLightbox);
+    
     function showHome() {
       document.getElementById('home-page').style.display = 'block';
       document.querySelectorAll('.project-detail').forEach(el => {
@@ -603,6 +695,9 @@
         el.classList.remove('active');
       });
       document.getElementById('project-' + projectId).classList.add('active');
+      
+      // Re-initialize lightbox for new project images
+      setTimeout(initLightbox, 100);
       
       // Show balls only on NHL Pool project
       if (projectId === 'nhlpool') {
@@ -663,11 +758,11 @@
 
     // NHL Team colors and logos (32 teams)
     const nhlTeams = [
-      { name: 'ANA', colors: ['#F47A38', '#B9975B'], logo: '/images/nhl-logos/ANA.png' },
-      { name: 'BOS', colors: ['#FFB81C', '#000000'], logo: '/images/nhl-logos/BOS.png' },
-      { name: 'BUF', colors: ['#002654', '#FCB514'], logo: '/images/nhl-logos/BUF.png' },
-      { name: 'CGY', colors: ['#C8102E', '#F1BE48'], logo: '/images/nhl-logos/CGY.png' },
-      { name: 'CAR', colors: ['#CC0000', '#000000'], logo: '/images/nhl-logos/CAR.png' },
+      { name: 'ANA', colors: ['#F47A38', '#B9975B'], logo: '/images/nhl-logos/ana.png' },
+      { name: 'BOS', colors: ['#FFB81C', '#000000'], logo: '/images/nhl-logos/bos.png' },
+      { name: 'BUF', colors: ['#002654', '#FCB514'], logo: '/images/nhl-logos/buf.png' },
+      { name: 'CGY', colors: ['#C8102E', '#F1BE48'], logo: '/images/nhl-logos/cgy.png' },
+      { name: 'CAR', colors: ['#CC0000', '#000000'], logo: '/images/nhl-logos/car.png' },
       { name: 'CHI', colors: ['#CF0A2C', '#000000'], logo: '/images/nhl-logos/chi.png' },
       { name: 'COL', colors: ['#6F263D', '#236192'], logo: '/images/nhl-logos/col.png' },
       { name: 'CBJ', colors: ['#002654', '#CE1126'], logo: '/images/nhl-logos/cbj.png' },
@@ -675,20 +770,20 @@
       { name: 'DET', colors: ['#CE1126', '#FFFFFF'], logo: '/images/nhl-logos/det.png' },
       { name: 'EDM', colors: ['#041E42', '#FF4C00'], logo: '/images/nhl-logos/edm.png' },
       { name: 'FLA', colors: ['#041E42', '#C8102E'], logo: '/images/nhl-logos/fla.png' },
-      { name: 'LA', colors: ['#111111', '#A2AAAD'], logo: '/images/nhl-logos/lak.png' },
+      { name: 'LA', colors: ['#111111', '#A2AAAD'], logo: '/images/nhl-logos/la.png' },
       { name: 'MIN', colors: ['#154734', '#A6192E'], logo: '/images/nhl-logos/min.png' },
       { name: 'MTL', colors: ['#AF1E2D', '#192168'], logo: '/images/nhl-logos/mtl.png' },
       { name: 'NSH', colors: ['#FFB81C', '#041E42'], logo: '/images/nhl-logos/nsh.png' },
-      { name: 'NJ', colors: ['#CE1126', '#000000'], logo: '/images/nhl-logos/njd.png' },
+      { name: 'NJ', colors: ['#CE1126', '#000000'], logo: '/images/nhl-logos/nj.png' },
       { name: 'NYI', colors: ['#00539B', '#F47D30'], logo: '/images/nhl-logos/nyi.png' },
       { name: 'NYR', colors: ['#0038A8', '#CE1126'], logo: '/images/nhl-logos/nyr.png' },
       { name: 'OTT', colors: ['#C52032', '#000000'], logo: '/images/nhl-logos/ott.png' },
       { name: 'PHI', colors: ['#F74902', '#000000'], logo: '/images/nhl-logos/phi.png' },
       { name: 'PIT', colors: ['#000000', '#CFC493'], logo: '/images/nhl-logos/pit.png' },
-      { name: 'SJ', colors: ['#006D75', '#EA7200'], logo: '/images/nhl-logos/sjs.png' },
+      { name: 'SJ', colors: ['#006D75', '#EA7200'], logo: '/images/nhl-logos/sj.png' },
       { name: 'SEA', colors: ['#001628', '#99D9D9'], logo: '/images/nhl-logos/sea.png' },
       { name: 'STL', colors: ['#002F87', '#FCB514'], logo: '/images/nhl-logos/stl.png' },
-      { name: 'TB', colors: ['#002868', '#FFFFFF'], logo: '/images/nhl-logos/tbl.png' },
+      { name: 'TB', colors: ['#002868', '#FFFFFF'], logo: '/images/nhl-logos/tb.png' },
       { name: 'TOR', colors: ['#00205B', '#FFFFFF'], logo: '/images/nhl-logos/tor.png' },
       { name: 'VAN', colors: ['#00205B', '#00843D'], logo: '/images/nhl-logos/van.png' },
       { name: 'VGK', colors: ['#B4975A', '#333F42'], logo: '/images/nhl-logos/vgk.png' },
