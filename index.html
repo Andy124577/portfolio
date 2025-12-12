@@ -14,7 +14,7 @@
       height: 100%;
       pointer-events: none;
       z-index: 1;
-      display: none; /* Hidden by default */
+      display: none;
     }
     
     #nhl-balls-canvas.active {
@@ -67,6 +67,7 @@
       align-items: center;
       justify-content: center;
       transition: background 0.3s;
+      z-index: 10001;
     }
     
     .lightbox-close:hover {
@@ -81,19 +82,59 @@
     .gallery-item img:hover {
       opacity: 0.8;
     }
+    
+    /* Image captions */
+    .gallery-item {
+      position: relative;
+    }
+    
+    .image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+      color: white;
+      padding: 2.5rem 1.5rem 1rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      pointer-events: none;
+    }
+    
+    /* Logo styling */
+    .logo-link {
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.3s;
+    }
+    
+    .logo-link:hover {
+      opacity: 0.7;
+    }
+    
+    .logo {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+      font-style: italic;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <img id="lightbox-img" src="" alt="Full size image">
+    <span class="lightbox-close" onclick="closeLightbox(); event.stopPropagation();">&times;</span>
+    <img id="lightbox-img" src="" alt="Full size image" onclick="event.stopPropagation()">
   </div>
   
   <canvas id="nhl-balls-canvas"></canvas>
   <!-- Navigation -->
   <nav>
-    <div class="logo">Andy Zubka</div>
+    <a href="#" onclick="showHome(); return false;" class="logo-link">
+      <div class="logo">Andy Zubka</div>
+    </a>
     <ul class="nav-links">
       <li><a href="#home" onclick="showHome()">Travaux</a></li>
       <li><a href="#about">À Propos</a></li>
@@ -106,7 +147,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <h1>Designer Créatif<br>& Développeur</h1>
-      <p>Création d'expériences numériques à travers le design web, la visualisation 3D et les médias interactifs au Québec, Canada.</p>
+      <p>Création d'expériences numériques à travers le design web et les médias interactifs au Québec, Canada.</p>
       <a href="#work" class="cta-button">Voir Mon Travail</a>
     </section>
 
@@ -305,6 +346,7 @@
       <div class="project-gallery">
         <div class="gallery-item full">
           <img src="/Images/huskies/projection1.png" alt="Ice projection overview">
+          <div class="image-caption">Vue d'ensemble de la projection mapping sur la glace</div>
         </div>
 
         <div class="gallery-item full">
@@ -316,13 +358,16 @@
 
         <div class="gallery-item full">
           <img src="/Images/huskies/projection2.png" alt="Design process">
+          <div class="image-caption">Animations synchronisées avec les moments clés du match</div>
         </div>
         <div class="gallery-item full">
           <img src="/Images/huskies/projection3.png" alt="Motion graphics">
+          <div class="image-caption">Effets visuels dynamiques lors de l'introduction des joueurs</div>
         </div>
 
         <div class="gallery-item full">
           <img src="/Images/huskies/projection4.png" alt="Arena atmosphere">
+          <div class="image-caption">Ambiance électrisante créée dans l'aréna pendant les séries</div>
         </div>
       </div>
     </div>
@@ -385,23 +430,28 @@
       <div class="project-gallery">
         <div class="gallery-item full">
           <img src="/Images/ctri/7MarsWeb.PNG" alt="CTRI overview">
+          <div class="image-caption">Interface principale du système de gestion d'inventaire CTRI</div>
         </div>
         <div class="gallery-item full">
           <img src="/Images/ctri/1MarsApp.PNG" alt="CTRI overview">
+          <div class="image-caption">Version mobile de l'application de gestion</div>
         </div>
         <div class="gallery-item full">
           <img src="/Images/ctri/14MarsWeb.PNG" alt="CTRI overview">
+          <div class="image-caption">Tableau de bord des entretiens et maintenance</div>
         </div>
         <div class="gallery-item full">
           <img src="/Images/ctri/2MarsWeb.PNG" alt="CTRI overview">
+          <div class="image-caption">Module de suivi des pièces et équipements</div>
         </div>
         <div class="gallery-item full">
           <img src="/Images/ctri/7MarsWeb.PNG" alt="CTRI overview">
+          <div class="image-caption">Vue d'ensemble de la plateforme web complète</div>
         </div>
-
 
         <div class="gallery-item full">
           <img src="/Images/ctri/1MarsWeb.PNG" alt="CTRI final">
+          <div class="image-caption">Interface finale optimisée pour une navigation intuitive</div>
         </div>
       </div>
     </div>
@@ -465,19 +515,23 @@
       <div class="project-gallery">
         <div class="gallery-item full">
           <img src="/Images/nhlPool/stats.png" alt="NHL Pool overview">
+          <div class="image-caption">Statistiques détaillées en temps réel des joueurs NHL</div>
         </div>
 
         <div class="gallery-grid">
           <div class="gallery-item">
             <img src="/Images/nhlPool/teams.png" alt="NHL dashboard">
+            <div class="image-caption">Gestion des équipes du pool</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/nhl-stats.jpg" alt="NHL stats">
+            <div class="image-caption">Classement et performances</div>
           </div>
         </div>
 
         <div class="gallery-item full">
           <img src="/Images/nhl-final.jpg" alt="NHL final">
+          <div class="image-caption">Interface complète de l'application pool NHL</div>
         </div>
       </div>
     </div>
@@ -539,67 +593,86 @@
       </div>
 
       <div class="project-gallery">
-
         <div class="gallery-grid">
           <div class="gallery-item">
             <img src="/Images/pamphlet/couverture.png" alt="Pamphlet front">
+            <div class="image-caption">Couverture</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page2.png" alt="Pamphlet front">
+            <div class="image-caption">Page 2</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page3.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 3</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page4.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 4</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page5.png" alt="Pamphlet front">
+            <div class="image-caption">Page 5</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page6.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 6</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page7.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 7</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page8.png" alt="Pamphlet front">
+            <div class="image-caption">Page 8</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page9.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 9</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page10.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 10</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page11.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 11</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page12.png" alt="Pamphlet front">
+            <div class="image-caption">Page 12</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page13.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 13</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page14.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 14</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page15.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 15</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page16.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 16</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page17.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 17</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page18.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 18</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/page19.png" alt="Pamphlet layout">
+            <div class="image-caption">Page 19</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/pamphlet/arriere.png" alt="Pamphlet layout">
+            <div class="image-caption">Arriere</div>
           </div>
         </div>
       </div>
@@ -665,15 +738,27 @@
         <div class="gallery-grid">
           <div class="gallery-item">
             <img src="/Images/small/ZubkaAndy_quoteDevoir.jpg" alt="Project 1">
+            <div class="image-caption">Gretzky</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/small/troc.png" alt="Project 1">
+            <div class="image-caption">Troc</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/small/cameriseMajomik.png" alt="Project 1">
+            <div class="image-caption">Logo Design camerises Majomik</div>
           </div>
           <div class="gallery-item">
             <img src="/Images/small/maserati.png" alt="Project 2">
+            <div class="image-caption">Maserati poster</div>
+          </div>
+          <div class="gallery-item">
+            <img src="/Images/small/afficheKatchow.png" alt="Project 1">
+            <div class="image-caption">cars 3 poster</div>
+          </div>
+          <div class="gallery-item">
+            <img src="/Images/small/OveAndyZ.png" alt="Project 2">
+            <div class="image-caption">Ovechkin poster</div>
           </div>
         </div>
       </div>
