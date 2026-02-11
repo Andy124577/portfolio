@@ -1057,29 +1057,35 @@
 
     // Initialize balls and start animation when NHL Pool project is opened
     function startBalls() {
-      resizeCanvas();
-      if (!ballsInitialized) {
-        // First time: preload logos, then create balls
-        preloadLogos().then(() => {
-          balls = [];
-          nhlTeams.forEach((team, i) => {
-            const x = Math.random() * (canvas.width - 100) + 50;
-            const y = -50 - (i * 30);
-            balls.push(new Ball(x, y, team));
-          });
-          ballsInitialized = true;
-          if (!ballsAnimationId) animate();
+      // Wait for the browser to finish layout before measuring height
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          resizeCanvas();
+          if (!ballsInitialized) {
+            // First time: preload logos, then create balls
+            preloadLogos().then(() => {
+              resizeCanvas();
+              balls = [];
+              nhlTeams.forEach((team, i) => {
+                const x = Math.random() * (canvas.width - 100) + 50;
+                const y = -50 - (i * 30);
+                balls.push(new Ball(x, y, team));
+              });
+              ballsInitialized = true;
+              if (!ballsAnimationId) animate();
+            });
+          } else {
+            // Already initialized: just reset positions
+            balls.forEach((ball, i) => {
+              ball.x = Math.random() * (canvas.width - 100) + 50;
+              ball.y = -50 - (i * 30);
+              ball.vx = (Math.random() - 0.5) * 2;
+              ball.vy = 0;
+            });
+            if (!ballsAnimationId) animate();
+          }
         });
-      } else {
-        // Already initialized: just reset positions
-        balls.forEach((ball, i) => {
-          ball.x = Math.random() * (canvas.width - 100) + 50;
-          ball.y = -50 - (i * 30);
-          ball.vx = (Math.random() - 0.5) * 2;
-          ball.vy = 0;
-        });
-        if (!ballsAnimationId) animate();
-      }
+      });
     }
 
     function stopBalls() {
