@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Andy Zubka - Portfolio</title>
+  <meta name="description" content="Portfolio d'Andy Zubka - Designer créatif et développeur basé au Québec, Canada. Design web, projection mapping et médias interactifs.">
+  <meta property="og:title" content="Andy Zubka - Portfolio">
+  <meta property="og:description" content="Designer créatif et développeur. Création d'expériences numériques à travers le design web et les médias interactifs.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/Images/personel.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>A</text></svg>">
   <link rel="stylesheet" href="modern_portfolio.css">
   <style>
     #nhl-balls-canvas {
@@ -135,10 +141,15 @@
     <a href="#" onclick="showHome(); return false;" class="logo-link">
       <div class="logo">Andy Zubka</div>
     </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <ul class="nav-links">
-      <li><a href="#home" onclick="showHome()">Travaux</a></li>
-      <li><a href="#about">À Propos</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#home" onclick="showHome(); closeMenu();">Travaux</a></li>
+      <li><a href="#about" onclick="closeMenu();">À Propos</a></li>
+      <li><a href="#contact" onclick="closeMenu();">Contact</a></li>
     </ul>
   </nav>
 
@@ -245,64 +256,38 @@
     <!-- About Section -->
     <section id="about" class="projects-section">
       <h2 class="section-title">À Propos</h2>
-      <div style="max-width: 900px;">
-        <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray); margin-bottom: 2rem;">
-          Salut! Je suis Andy Zubka, un designer créatif et développeur basé au Québec, Canada. Je me spécialise dans la création d'expériences numériques innovantes qui combinent design web, visualisation 3D et médias interactifs.
-        </p>
-        <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray); margin-bottom: 2rem;">
-          Avec une passion pour la technologie et le design, je travaille sur des projets variés allant de la projection mapping pour des événements sportifs au développement d'applications web interactives. Mon approche combine créativité technique et attention aux détails pour créer des solutions qui captivent et engagent.
-        </p>
-        <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray);">
-          Quand je ne code pas ou ne dessine pas, vous me trouverez probablement en train d'explorer de nouvelles technologies, de regarder du hockey, ou de travailler sur mes propres projets créatifs.
-        </p>
+      <div class="about-content">
+        <p>Salut! Je suis Andy Zubka, un designer créatif et développeur basé au Québec, Canada. Je me spécialise dans la création d'expériences numériques innovantes qui combinent design web, visualisation 3D et médias interactifs.</p>
+        <p>Avec une passion pour la technologie et le design, je travaille sur des projets variés allant de la projection mapping pour des événements sportifs au développement d'applications web interactives. Mon approche combine créativité technique et attention aux détails pour créer des solutions qui captivent et engagent.</p>
+        <p>Quand je ne code pas ou ne dessine pas, vous me trouverez probablement en train d'explorer de nouvelles technologies, de regarder du hockey, ou de travailler sur mes propres projets créatifs.</p>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="projects-section" style="min-height: 60vh;">
+    <section id="contact" class="projects-section contact-section">
       <h2 class="section-title">Contact</h2>
-      <div style="max-width: 700px;">
-        <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray); margin-bottom: 3rem;">
-          Vous avez un projet en tête? N'hésitez pas à me contacter. Je suis toujours ouvert à discuter de nouvelles opportunités et collaborations.
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div class="contact-content">
+        <p>Vous avez un projet en tête? N'hésitez pas à me contacter. Je suis toujours ouvert à discuter de nouvelles opportunités et collaborations.</p>
+        <div class="contact-list">
           <div>
-            <h4 style="color: var(--gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Email</h4>
-            <a href="mailto:andyzubka@outlook.com" style="color: var(--text-color); text-decoration: none; font-size: 1.5rem; transition: color 0.3s;">andyzubka@outlook.com</a>
+            <h4 class="contact-label">Email</h4>
+            <a href="mailto:andyzubka@outlook.com" class="contact-link">andyzubka@outlook.com</a>
           </div>
           <div>
-            <h4 style="color: var(--gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Téléphone</h4>
-            <a href="tel:+18735617516" style="color: var(--text-color); text-decoration: none; font-size: 1.5rem; transition: color 0.3s;">+1 873 561 7516</a>
+            <h4 class="contact-label">Téléphone</h4>
+            <a href="tel:+18735617516" class="contact-link">+1 873 561 7516</a>
           </div>
           <div>
-            <h4 style="color: var(--gray); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Réseaux Sociaux</h4>
-            <div style="display: flex; gap: 2rem;">
-              <a href="#" style="color: var(--text-color); text-decoration: none; font-size: 1.2rem; transition: color 0.3s;">LinkedIn</a>
-              <a href="#" style="color: var(--text-color); text-decoration: none; font-size: 1.2rem; transition: color 0.3s;">GitHub</a>
+            <h4 class="contact-label">Réseaux Sociaux</h4>
+            <div class="social-links">
+              <a href="#">LinkedIn</a>
+              <a href="#">GitHub</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <div>
-          <h3>Travaillons ensemble</h3>
-          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
-        </div>
-        <div class="contact-info">
-          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
-          <a href="tel:+18735617516">+1 873 561 7516</a>
-          <a href="#">LinkedIn</a>
-          
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
-      </div>
-    </footer>
   </div>
 
   <!-- Project Detail: Huskies -->
@@ -381,23 +366,6 @@
       </div>
     </div>
 
-    <footer>
-      <div class="footer-content">
-        <div>
-          <h3>Travaillons ensemble</h3>
-          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
-        </div>
-        <div class="contact-info">
-          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
-          <a href="tel:+18735617516">+1 873 561 7516</a>
-          <a href="#">LinkedIn</a>
-          
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
-      </div>
-    </footer>
   </div>
 
   <!-- Project Detail: CTRI -->
@@ -460,23 +428,6 @@
       </div>
     </div>
 
-    <footer>
-      <div class="footer-content">
-        <div>
-          <h3>Travaillons ensemble</h3>
-          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
-        </div>
-        <div class="contact-info">
-          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
-          <a href="tel:+18735617516">+1 873 561 7516</a>
-          <a href="#">LinkedIn</a>
-          
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
-      </div>
-    </footer>
   </div>
 
   <!-- Project Detail: NHL Pool -->
@@ -532,40 +483,19 @@
             <div class="image-caption">Endroit pour créer, entrer et gérer les pools dont vous faite parti</div>
           </div>
         </div>
+
+        <div class="gallery-item full">
+          <img src="/Images/nhlPool/teamstats.png" alt="NHL stats" loading="lazy">
+          <div class="image-caption">Classement et performances de chaque équipes du pool</div>
         </div>
 
-        <div class="project-gallery">
-        <div class="gallery-item">
-            <img src="/Images/nhlPool/teamstats.png" alt="NHL stats" loading="lazy">
-            <div class="image-caption">Classement et performances de chaque équipes du pool</div>
-          </div>
-
-          <div class="project-gallery">
         <div class="gallery-item full">
           <img src="/Images/nhlPool/draft.png" alt="NHL Pool overview" loading="lazy">
-          <div class="image-caption">endroit où les personnes sélectionne des joueurs, équipes et gardien de but pour leur pool</div>
+          <div class="image-caption">Endroit où les personnes sélectionne des joueurs, équipes et gardien de but pour leur pool</div>
         </div>
-
       </div>
     </div>
 
-    <footer>
-      <div class="footer-content">
-        <div>
-          <h3>Travaillons ensemble</h3>
-          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
-        </div>
-        <div class="contact-info">
-          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
-          <a href="tel:+18735617516">+1 873 561 7516</a>
-          <a href="#">LinkedIn</a>
-          
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
-      </div>
-    </footer>
   </div>
 
   <!-- Project Detail: Pamphlet -->
@@ -691,23 +621,6 @@
       </div>
     </div>
 
-    <footer>
-      <div class="footer-content">
-        <div>
-          <h3>Travaillons ensemble</h3>
-          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
-        </div>
-        <div class="contact-info">
-          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
-          <a href="tel:+18735617516">+1 873 561 7516</a>
-          <a href="#">LinkedIn</a>
-          
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
-      </div>
-    </footer>
   </div>
 
   <!-- Project Detail: Small Projects -->
@@ -777,26 +690,38 @@
       </div>
     </div>
 
-    <footer>
-      <div class="footer-content">
-        <div>
-          <h3>Travaillons ensemble</h3>
-          <p style="color: var(--gray);">Disponible pour du travail freelance et des collaborations</p>
-        </div>
-        <div class="contact-info">
-          <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
-          <a href="tel:+18735617516">+1 873 561 7516</a>
-          <a href="#">LinkedIn</a>
-          
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Andy Zubka. Tous droits réservés.</p>
-      </div>
-    </footer>
   </div>
 
+  <!-- Shared Footer -->
+  <footer id="site-footer">
+    <div class="footer-content">
+      <div>
+        <h3>Travaillons ensemble</h3>
+        <p class="footer-subtitle">Disponible pour du travail freelance et des collaborations</p>
+      </div>
+      <div class="contact-info">
+        <a href="mailto:andyzubka@outlook.com">andyzubka@outlook.com</a>
+        <a href="tel:+18735617516">+1 873 561 7516</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Andy Zubka. Tous droits réservés.</p>
+    </div>
+  </footer>
+
   <script>
+    // Mobile hamburger menu
+    function toggleMenu() {
+      document.querySelector('.hamburger').classList.toggle('active');
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+
+    function closeMenu() {
+      document.querySelector('.hamburger').classList.remove('active');
+      document.querySelector('.nav-links').classList.remove('open');
+    }
+
     // Lightbox functionality
     function openLightbox(imgSrc) {
       const lightbox = document.getElementById('lightbox');
@@ -826,11 +751,13 @@
     window.addEventListener('load', initLightbox);
     
     function showHome() {
+      closeMenu();
       document.getElementById('home-page').style.display = 'block';
       document.querySelectorAll('.project-detail').forEach(el => {
         el.classList.remove('active');
       });
-      canvas.classList.remove('active'); // Hide balls
+      canvas.classList.remove('active');
+      stopBalls();
       window.scrollTo(0, 0);
     }
 

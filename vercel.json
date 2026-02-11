@@ -2,11 +2,11 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/modern_portfolio.html"
+      "dest": "/index.html"
     },
     {
       "src": "/(.*)",
-      "dest": "/modern_portfolio.html"
+      "dest": "/index.html"
     }
   ]
 }
