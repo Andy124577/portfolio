@@ -12,7 +12,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>A</text></svg>">
   <link rel="stylesheet" href="modern_portfolio.css">
 
-  <div data-us-project="tSePqSvhaM0ssJsZLEG0" style="width:1440px; height: 900px"></div><script type="text/javascript">!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();</script>
+  <div data-us-project="tSePqSvhaM0ssJsZLEG0" style="width:2000px; height: 1000px"></div><script type="text/javascript">!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();</script>
   <style>
     #nhl-balls-canvas {
       position: absolute;
@@ -157,14 +157,9 @@
   <div id="home-page">
     <!-- Hero Section -->
     <section class="hero">
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="/videos/sarcastic_remix.webm" type="video/webm">
-      </video>
-      <div class="hero-content">
-        <h1>Designer Créatif<br>& Développeur</h1>
-        <p>Création d'expériences numériques à travers le design web et les médias interactifs au Québec, Canada.</p>
-        <a href="#work" class="cta-button">Voir Mon Travail</a>
-      </div>
+      <h1>Designer Créatif<br>& Développeur</h1>
+      <p>Création d'expériences numériques à travers le design web et les médias interactifs au Québec, Canada.</p>
+      <a href="#work" class="cta-button">Voir Mon Travail</a>
     </section>
 
     <!-- Projects Section -->
@@ -1023,17 +1018,6 @@
     });
 
     window.addEventListener('scroll', () => {
-      // Toggle nav background after scrolling past hero
-      const hero = document.querySelector('.hero');
-      const navEl = document.querySelector('nav');
-      if (hero && navEl) {
-        if (window.scrollY > hero.offsetHeight - 100) {
-          navEl.classList.add('scrolled');
-        } else {
-          navEl.classList.remove('scrolled');
-        }
-      }
-
       if (!canvas.classList.contains('active')) return;
       const newScroll = window.scrollY;
       const scrollDelta = newScroll - scrollOffset;
