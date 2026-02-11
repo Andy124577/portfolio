@@ -936,7 +936,7 @@
         this.y += this.vy;
         this.vx *= this.friction;
 
-        const maxY = canvas.height;
+        const maxY = window.scrollY + window.innerHeight;
 
         if (this.y + this.radius > maxY) {
           this.y = maxY - this.radius;
@@ -944,8 +944,9 @@
           this.vx *= 0.95;
         }
 
-        if (this.y - this.radius < 0) {
-          this.y = this.radius;
+        const minY = window.scrollY;
+        if (this.y - this.radius < minY) {
+          this.y = minY + this.radius;
           this.vy *= -this.bounce;
         }
 
