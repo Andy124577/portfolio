@@ -155,9 +155,14 @@
   <div id="home-page">
     <!-- Hero Section -->
     <section class="hero">
-      <h1>Designer Créatif<br>& Développeur</h1>
-      <p>Création d'expériences numériques à travers le design web et les médias interactifs au Québec, Canada.</p>
-      <a href="#work" class="cta-button">Voir Mon Travail</a>
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="/videos/sarcastic_remix.webm" type="video/webm">
+      </video>
+      <div class="hero-content">
+        <h1>Designer Créatif<br>& Développeur</h1>
+        <p>Création d'expériences numériques à travers le design web et les médias interactifs au Québec, Canada.</p>
+        <a href="#work" class="cta-button">Voir Mon Travail</a>
+      </div>
     </section>
 
     <!-- Projects Section -->
@@ -1016,6 +1021,17 @@
     });
 
     window.addEventListener('scroll', () => {
+      // Toggle nav background after scrolling past hero
+      const hero = document.querySelector('.hero');
+      const navEl = document.querySelector('nav');
+      if (hero && navEl) {
+        if (window.scrollY > hero.offsetHeight - 100) {
+          navEl.classList.add('scrolled');
+        } else {
+          navEl.classList.remove('scrolled');
+        }
+      }
+
       if (!canvas.classList.contains('active')) return;
       const newScroll = window.scrollY;
       const scrollDelta = newScroll - scrollOffset;
