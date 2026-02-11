@@ -29,6 +29,12 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
+      background: transparent;
+      backdrop-filter: none;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
+
+    nav.scrolled {
       background: rgba(10, 10, 10, 0.8);
       backdrop-filter: blur(10px);
     }
@@ -60,12 +66,32 @@
 
     /* Hero Section */
     .hero {
+      position: relative;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 0 4rem;
       margin-top: -40px;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
