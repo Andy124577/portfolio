@@ -805,14 +805,12 @@
     // Set canvas to full document height
     function resizeCanvas() {
       canvas.width = window.innerWidth;
-      setTimeout(() => {
-        const activeProject = document.querySelector('.project-detail.active');
-        if (activeProject) {
-          canvas.height = activeProject.scrollHeight;
-        } else {
-          canvas.height = document.body.scrollHeight;
-        }
-      }, 200);
+      const activeProject = document.querySelector('.project-detail.active');
+      if (activeProject) {
+        canvas.height = activeProject.scrollHeight;
+      } else {
+        canvas.height = document.body.scrollHeight;
+      }
     }
 
     // NHL Team colors and logos (32 teams) — corrected paths to match actual filenames
@@ -936,7 +934,7 @@
         this.y += this.vy;
         this.vx *= this.friction;
 
-        const maxY = window.scrollY + window.innerHeight;
+        const maxY = canvas.height;
 
         if (this.y + this.radius > maxY) {
           this.y = maxY - this.radius;
@@ -944,9 +942,8 @@
           this.vx *= 0.95;
         }
 
-        const minY = window.scrollY;
-        if (this.y - this.radius < minY) {
-          this.y = minY + this.radius;
+        if (this.y - this.radius < 0) {
+          this.y = this.radius;
           this.vy *= -this.bounce;
         }
 
